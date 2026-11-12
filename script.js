@@ -246,12 +246,36 @@ if (savedLang && translations[savedLang]) {
     setLanguage(savedLang);
 }
 
+function initSkeletonLoading() {
+    document.documentElement.classList.add("js");
+
+    const containers = document.querySelectorAll(".gallery-item, .image-frame");
+    containers.forEach((container) => {
+        const img = container.querySelector("img");
+        if (!img) return;
+
+        const markLoaded = () => {
+            container.classList.add("is-loaded");
+            img.classList.add("is-loaded");
+        };
+
+        if (img.complete && img.naturalHeight !== 0) {
+            markLoaded();
+        } else {
+            img.addEventListener("load", markLoaded, { once: true });
+            img.addEventListener("error", markLoaded, { once: true });
+        }
+    });
+}
+initSkeletonLoading();
+
 const gallerySections = document.querySelectorAll("[data-gallery-section]");
 const lightbox = document.getElementById("lightbox");
 
 if (gallerySections.length && lightbox) {
     const lightboxImg = document.getElementById("lightboxImg");
     const lightboxCounter = document.getElementById("lightboxCounter");
+    const lightboxStage = document.getElementById("lightboxStage") || document.querySelector(".lightbox-stage");
     const closeBtn = document.getElementById("lightboxClose");
     const prevBtn = document.getElementById("lightboxPrev");
     const nextBtn = document.getElementById("lightboxNext");
@@ -270,9 +294,23 @@ if (gallerySections.length && lightbox) {
         const visible = getVisibleItems(activeSection);
         if (!visible.length) return;
         const img = visible[currentIndex].querySelector("img");
+
+        if (lightboxStage) lightboxStage.classList.add("is-loading");
+
+        const onLightboxLoaded = () => {
+            if (lightboxStage) lightboxStage.classList.remove("is-loading");
+        };
+
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
         lightboxCounter.textContent = `${currentIndex + 1} / ${visible.length}`;
+
+        if (lightboxImg.complete && lightboxImg.naturalHeight !== 0) {
+            onLightboxLoaded();
+        } else {
+            lightboxImg.onload = onLightboxLoaded;
+            lightboxImg.onerror = onLightboxLoaded;
+        }
     }
 
     function openLightbox(section, item) {
@@ -289,6 +327,7 @@ if (gallerySections.length && lightbox) {
         lightbox.classList.remove("open");
         lightbox.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
+        if (lightboxStage) lightboxStage.classList.remove("is-loading");
     }
 
     function showNext(step) {
