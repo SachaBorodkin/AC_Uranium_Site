@@ -139,11 +139,11 @@ const translations = {
     }
 };
 
-const dropdown = document.querySelector(".lang-dropdown");
-const langBtn = document.getElementById("langBtn");
-const currentFlag = document.getElementById("currentFlag");
-const currentLang = document.getElementById("currentLang");
-const langOptions = document.querySelectorAll(".lang-option");
+let dropdown = null;
+let langBtn = null;
+let currentFlag = null;
+let currentLang = null;
+let langOptions = [];
 
 function getGithubBadgeUrl(label) {
     const formatted = encodeURIComponent(label.trim().replace(/\s+/g, "_"));
@@ -178,23 +178,23 @@ function updateTranslations(dict) {
         });
     });
 }
-
 function setLanguage(lang) {
     const dict = translations[lang] || translations.en;
+    const selectedLang = translations[lang] ? lang : "en";
 
-    document.documentElement.lang = lang;
+    document.documentElement.lang = selectedLang;
     if (currentFlag) currentFlag.textContent = dict.flag;
     if (currentLang) currentLang.textContent = dict.code;
 
     updateTranslations(dict);
 
     langOptions.forEach((btn) => {
-        const isSelected = btn.dataset.lang === lang;
+        const isSelected = btn.dataset.lang === selectedLang;
         btn.classList.toggle("active", isSelected);
         btn.setAttribute("aria-selected", String(isSelected));
     });
 
-    localStorage.setItem("acUraniumLang", lang);
+    localStorage.setItem("acUraniumLang", selectedLang);
 }
 
 function setDropdownOpen(open) {
@@ -207,33 +207,6 @@ function closeDropdown() {
     setDropdownOpen(false);
 }
 
-if (langBtn && dropdown) {
-    langBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        setMenuOpen(false);
-        setDropdownOpen(!dropdown.classList.contains("open"));
-    });
-
-    langOptions.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            setLanguage(btn.dataset.lang);
-            closeDropdown();
-        });
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!dropdown.contains(e.target)) {
-            closeDropdown();
-        }
-    });
-}
-
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        closeDropdown();
-    }
-});
-
 // Preload badge images for smooth language switching
 Object.values(translations).forEach((dict) => {
     if (dict.footerGithub) {
@@ -242,10 +215,91 @@ Object.values(translations).forEach((dict) => {
     }
 });
 
-const savedLang = localStorage.getItem("acUraniumLang");
-if (savedLang && translations[savedLang]) {
-    setLanguage(savedLang);
+async function loadHeader() {
+    const headerTarget = document.querySelector("[data-site-header]");
+    if (!headerTarget) return;
+
+    try {
+        const response = await fetch("header.html");
+        if (!response.ok) {
+            throw new Error(`Unable to load header.html (${response.status})`);
+        }
+        headerTarget.innerHTML = await response.text();
+
+        const currentPage = window.location.pathname.split("/").pop() || "index.html";
+        headerTarget.querySelectorAll("[data-page]").forEach((link) => {
+            const isActive = link.dataset.page === currentPage;
+            link.classList.toggle("active", isActive);
+            if (isActive) link.setAttribute("aria-current", "page");
+        });
+
+        dropdown = headerTarget.querySelector(".lang-dropdown");
+        langBtn = headerTarget.querySelector("#langBtn");
+        currentFlag = headerTarget.querySelector("#currentFlag");
+        currentLang = headerTarget.querySelector("#currentLang");
+        langOptions = Array.from(headerTarget.querySelectorAll(".lang-option"));
+
+        const menuBtn = headerTarget.querySelector("#menuBtn");
+        const mainNav = headerTarget.querySelector("#mainNav");
+        const setMenuOpen = (open) => {
+            if (!menuBtn || !mainNav) return;
+            mainNav.classList.toggle("is-open", open);
+            menuBtn.setAttribute("aria-expanded", String(open));
+        };
+
+        if (langBtn && dropdown) {
+            langBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                setMenuOpen(false);
+                setDropdownOpen(!dropdown.classList.contains("open"));
+            });
+
+            langOptions.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    if (btn.dataset.action === "redirect-page") {
+                        window.location.href = "page.html";
+                        return;
+                    }
+                    setLanguage(btn.dataset.lang);
+                    closeDropdown();
+                });
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!dropdown.contains(e.target)) closeDropdown();
+            });
+        }
+
+        if (menuBtn && mainNav) {
+            menuBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                closeDropdown();
+                setMenuOpen(menuBtn.getAttribute("aria-expanded") !== "true");
+            });
+
+            mainNav.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => setMenuOpen(false));
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!mainNav.contains(e.target) && !menuBtn.contains(e.target)) {
+                    setMenuOpen(false);
+                }
+            });
+        }
+
+        const savedLang = localStorage.getItem("acUraniumLang");
+        setLanguage(savedLang && translations[savedLang] ? savedLang : "en");
+    } catch (error) {
+        console.error("Failed to load the shared header.", error);
+    }
 }
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDropdown();
+});
+
+loadHeader();
 
 function initSkeletonLoading() {
     document.documentElement.classList.add("js");
@@ -396,43 +450,6 @@ if (joinForm) {
             successAlert.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
         joinForm.reset();
-    });
-}
-
-/* ============================================================
-   Hamburger Menu
-   ============================================================ */
-const menuBtn = document.getElementById("menuBtn");
-const mainNav = document.getElementById("mainNav");
-
-function setMenuOpen(open) {
-    if (!menuBtn || !mainNav) return;
-    mainNav.classList.toggle("is-open", open);
-    menuBtn.setAttribute("aria-expanded", String(open));
-}
-
-if (menuBtn && mainNav) {
-    menuBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        closeDropdown();
-        setMenuOpen(menuBtn.getAttribute("aria-expanded") !== "true");
-    });
-
-    // Close on nav link click
-    mainNav.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => setMenuOpen(false));
-    });
-
-    // Close on outside click
-    document.addEventListener("click", (e) => {
-        if (!mainNav.contains(e.target) && !menuBtn.contains(e.target)) {
-            setMenuOpen(false);
-        }
-    });
-
-    // Close on Escape
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") setMenuOpen(false);
     });
 }
 
