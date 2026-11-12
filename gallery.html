@@ -15,20 +15,75 @@
             </div>
 
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="index.html" >About Us</a>
-                <a href="gallery.html" class="active">Gallery</a>
-                <a href="#">Join Us</a>
+                <a href="#" data-i18n="navAbout">About Us</a>
+                <a href="gallery.html" class="active"data-i18n="navGallery">Gallery</a>
+                <a href="#" data-i18n="navJoin">Join Us</a>
             </nav>
 
-            <div class="lang-switcher" aria-label="Language selector">
-                <span class="flag" aria-hidden="true">🇬🇧</span>
-                <span>EN</span>
+            <div class="lang-dropdown">
+                <button type="button" class="lang-switcher" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language selector">
+                    <span class="flag" id="currentFlag" aria-hidden="true">🇬🇧</span>
+                    <span id="currentLang">EN</span>
+                </button>
+                <ul class="lang-menu" id="langMenu" role="listbox">
+                    <li>
+                        <button type="button" class="lang-option active" data-lang="en" role="option" aria-selected="true">
+                            <span class="flag" aria-hidden="true">🇬🇧</span>
+                            <span>EN</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="lang-option" data-lang="fr" role="option" aria-selected="false">
+                            <span class="flag" aria-hidden="true">🇫🇷</span>
+                            <span>FR</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="lang-option" data-lang="uk" role="option" aria-selected="false">
+                            <span class="flag" aria-hidden="true">🇺🇦</span>
+                            <span>UA</span>
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
 
-    <main>
 
+    <main class="gallery">
+    <header class="gallery-header">
+        <p class="eyebrow" data-i18n="galleryEyebrow">Matchday Highlights</p>
+        <h2 data-i18n="galleryTitle">Recent game</h2>
+    </header>
+
+    <div class="gallery-grid">
+        <figure class="gallery-item featured">
+            <img src="./images/games/september/1.webp" alt="Gallery image 1" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+            <img src="./images/games/september/2.webp" alt="Gallery image 2" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+            <img src="./images/games/september/3.webp" alt="Gallery image 3" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+            <img src="./images/games/september/4.webp" alt="Gallery image 4" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+            <img src="./images/games/september/5.webp" alt="Gallery image 5" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+            <img src="./images/games/september/6.webp" alt="Gallery image 6" loading="lazy">
+        </figure>
+    </div>
+</main>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous">&#10094;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Next">&#10095;</button>
+</div>
     </main>
     <footer class="site-footer">
         <div class="footer-empty"></div>

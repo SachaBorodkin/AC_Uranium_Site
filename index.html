@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Home</title>
+    <title data-i18n="pageTitle">Home</title>
 </head>
 <body>
     <header class="main-header">
@@ -15,14 +15,36 @@
             </div>
 
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="#" class="active">About Us</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="#">Join Us</a>
+                <a href="#" class="active" data-i18n="navAbout">About Us</a>
+                <a href="gallery.html" data-i18n="navGallery">Gallery</a>
+                <a href="#" data-i18n="navJoin">Join Us</a>
             </nav>
 
-            <div class="lang-switcher" aria-label="Language selector">
-                <span class="flag" aria-hidden="true">🇬🇧</span>
-                <span>EN</span>
+            <div class="lang-dropdown">
+                <button type="button" class="lang-switcher" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language selector">
+                    <span class="flag" id="currentFlag" aria-hidden="true">🇬🇧</span>
+                    <span id="currentLang">EN</span>
+                </button>
+                <ul class="lang-menu" id="langMenu" role="listbox">
+                    <li>
+                        <button type="button" class="lang-option active" data-lang="en" role="option" aria-selected="true">
+                            <span class="flag" aria-hidden="true">🇬🇧</span>
+                            <span>EN</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="lang-option" data-lang="fr" role="option" aria-selected="false">
+                            <span class="flag" aria-hidden="true">🇫🇷</span>
+                            <span>FR</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="lang-option" data-lang="uk" role="option" aria-selected="false">
+                            <span class="flag" aria-hidden="true">🇺🇦</span>
+                            <span>UA</span>
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
@@ -30,11 +52,11 @@
     <main class="about-us">
         <section class="about-intro">
             <div class="about-copy">
-                <p class="eyebrow">About us</p>
-                <p>
+                <p class="eyebrow" data-i18n="aboutEyebrow">About us</p>
+                <p data-i18n="aboutP1">
                     AC Uranium is an airsoft team created in october 2019 by a group of friends in Vyshhorod, Kyivska Oblast, Ukraine.
                 </p>
-                <p>
+                <p data-i18n="aboutP2">
                     We made a big way from toy pistols to real airsoft guns and real games with better inventory.
                 </p>
             </div>
@@ -47,27 +69,28 @@
 
         <section class="about-highlights">
             <article class="highlight-card">
-                <h3>Future plans</h3>
+                <h3 data-i18n="card1Title">Future plans</h3>
                 <p>(Zheka, yebash)</p>
             </article>
             <article class="highlight-card">
-                <h3>Game organisation</h3>
+                <h3 data-i18n="card2Title">Game organisation</h3>
                 <p>(Zheka, yebash)</p>
             </article>
             <article class="highlight-card">
-                <h3>Organisator team</h3>
+                <h3 data-i18n="card3Title">Organisator team</h3>
                 <p>(Zheka, yebash)</p>
             </article>
         </section>
     </main>
+
     <footer class="site-footer">
         <div class="footer-empty"></div>
 
-        <p class="footer-copy">&copy; 2026 AC Uranium. All rights reserved.</p>
+        <p class="footer-copy" data-i18n="footerCopy">&copy; 2026 AC Uranium. All rights reserved.</p>
 
         <div class="footer-socials" aria-label="Social media links">
-            <span class="media-label">Our Medias</span>
-            <a href="#" aria-label="Instagram" class="social-icon">
+            <span class="media-label" data-i18n="footerMedias">Our Medias</span>
+            <a href="https://www.instagram.com/ac_uranium_airsoft/" aria-label="Instagram" class="social-icon">
                 <img src="images/icons/insta_icon.webp" alt="Instagram">
             </a>
             <a href="#" aria-label="Telegram" class="social-icon">
@@ -78,5 +101,7 @@
             </a>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
