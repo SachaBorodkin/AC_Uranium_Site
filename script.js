@@ -210,6 +210,7 @@ function closeDropdown() {
 if (langBtn && dropdown) {
     langBtn.addEventListener("click", (e) => {
         e.stopPropagation();
+        setMenuOpen(false);
         setDropdownOpen(!dropdown.classList.contains("open"));
     });
 
@@ -413,6 +414,7 @@ function setMenuOpen(open) {
 if (menuBtn && mainNav) {
     menuBtn.addEventListener("click", (e) => {
         e.stopPropagation();
+        closeDropdown();
         setMenuOpen(menuBtn.getAttribute("aria-expanded") !== "true");
     });
 
