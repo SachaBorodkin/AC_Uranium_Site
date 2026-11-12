@@ -15,7 +15,13 @@
                 <h1>AC Uranium</h1>
             </div>
 
-            <nav class="main-nav" aria-label="Main navigation">
+            <button type="button" class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Main navigation">
                 <a href="index.html" data-i18n="navAbout">About Us</a>
                 <a href="gallery.html" class="active" data-i18n="navGallery">Gallery</a>
                 <a href="join.html" data-i18n="navJoin">Join Us</a>
@@ -52,7 +58,7 @@
 
     <main class="gallery">
         <section class="gallery-section" data-gallery-section>
-            <div class="gallery-top">
+            <div class="gallery-top reveal">
                 <div class="gallery-header">
                     <p class="eyebrow" data-i18n="galleryEyebrow">Matchday Highlights</p>
                     <h2 data-i18n="galleryTitle">Recent games</h2>
@@ -95,7 +101,7 @@
         <hr class="gallery-divider">
 
         <section class="gallery-section archive-section" data-gallery-section>
-            <div class="gallery-top">
+            <div class="gallery-top reveal" style="transition-delay:0.1s">
                 <div class="gallery-header">
                     <p class="eyebrow" data-i18n="archiveEyebrow">Early Days • 2019–2021</p>
                     <h2 data-i18n="archiveTitle">Archive gallery</h2>

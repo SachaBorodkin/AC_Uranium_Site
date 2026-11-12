@@ -15,7 +15,13 @@
                 <h1>AC Uranium</h1>
             </div>
 
-            <nav class="main-nav" aria-label="Main navigation">
+            <button type="button" class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Main navigation">
                 <a href="index.html" class="active" data-i18n="navAbout">About Us</a>
                 <a href="gallery.html" data-i18n="navGallery">Gallery</a>
                 <a href="join.html" data-i18n="navJoin">Join Us</a>
@@ -52,17 +58,17 @@
 
     <main class="about-us">
         <section class="about-intro">
-            <div class="about-copy">
+            <div class="about-copy reveal">
                 <p class="eyebrow" data-i18n="aboutEyebrow">About us</p>
-                <p data-i18n="aboutP1">
+                <p data-i18n="aboutP1" style="transition-delay:0.1s">
                     AC Uranium is an airsoft team created in october 2019 by a group of friends in Vyshhorod, Kyivska Oblast, Ukraine.
                 </p>
-                <p data-i18n="aboutP2">
+                <p data-i18n="aboutP2" style="transition-delay:0.2s">
                     We made a big way from toy pistols to real airsoft guns and real games with better inventory.
                 </p>
             </div>
 
-            <div class="image-stack">
+            <div class="image-stack reveal" style="transition-delay:0.15s">
                 <div class="image-frame">
                     <img src="./images/group-photo1.png" alt="Open mining landscape">
                 </div>
@@ -73,15 +79,15 @@
         </section>
 
         <section class="about-highlights">
-            <article class="highlight-card">
+            <article class="highlight-card reveal">
                 <h3 data-i18n="card1Title">Future plans</h3>
                 <p>(Zheka, yebash)</p>
             </article>
-            <article class="highlight-card">
+            <article class="highlight-card reveal" style="transition-delay:0.12s">
                 <h3 data-i18n="card2Title">Game organisation</h3>
                 <p>(Zheka, yebash)</p>
             </article>
-            <article class="highlight-card">
+            <article class="highlight-card reveal" style="transition-delay:0.24s">
                 <h3 data-i18n="card3Title">Organisator team</h3>
                 <p>(Zheka, yebash)</p>
             </article>

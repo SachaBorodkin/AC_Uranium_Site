@@ -397,3 +397,67 @@ if (joinForm) {
         joinForm.reset();
     });
 }
+
+/* ============================================================
+   Hamburger Menu
+   ============================================================ */
+const menuBtn = document.getElementById("menuBtn");
+const mainNav = document.getElementById("mainNav");
+
+function setMenuOpen(open) {
+    if (!menuBtn || !mainNav) return;
+    mainNav.classList.toggle("is-open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+}
+
+if (menuBtn && mainNav) {
+    menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setMenuOpen(menuBtn.getAttribute("aria-expanded") !== "true");
+    });
+
+    // Close on nav link click
+    mainNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
+    });
+
+    // Close on outside click
+    document.addEventListener("click", (e) => {
+        if (!mainNav.contains(e.target) && !menuBtn.contains(e.target)) {
+            setMenuOpen(false);
+        }
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") setMenuOpen(false);
+    });
+}
+
+/* ============================================================
+   Scroll-Reveal (IntersectionObserver)
+   ============================================================ */
+(function initReveal() {
+    const revealEls = document.querySelectorAll(".reveal");
+    if (!revealEls.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+        // Fallback: show all immediately
+        revealEls.forEach((el) => el.classList.add("is-visible"));
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    revealEls.forEach((el) => observer.observe(el));
+})();
