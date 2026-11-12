@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <title data-i18n="joinPageTitle">Join Us — AC Uranium</title>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-inner">
+            <div class="logo">
+                <img src="./images/logo.png" alt="AC Uranium logo" class="brand-mark">
+                <h1>AC Uranium</h1>
+            </div>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html" data-i18n="navAbout">About Us</a>
+                <a href="gallery.html" data-i18n="navGallery">Gallery</a>
+                <a href="join.html" class="active" data-i18n="navJoin">Join Us</a>
+            </nav>
+
+            <div class="lang-dropdown">
+                <button type="button" class="lang-switcher" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language selector">
+                    <span class="flag" id="currentFlag" aria-hidden="true">🇬🇧</span>
+                    <span id="currentLang">EN</span>
+                </button>
+                <ul class="lang-menu" id="langMenu" role="listbox">
+                    <li>
+                        <button type="button" class="lang-option active" data-lang="en" role="option" aria-selected="true">
+                            <span class="flag" aria-hidden="true">🇬🇧</span>
+                            <span>EN</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="lang-option" data-lang="fr" role="option" aria-selected="false">
+                            <span class="flag" aria-hidden="true">🇫🇷</span>
+                            <span>FR</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="lang-option" data-lang="uk" role="option" aria-selected="false">
+                            <span class="flag" aria-hidden="true">🇺🇦</span>
+                            <span>UA</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="join-page">
+        <div class="join-container">
+            <header class="join-header">
+                <p class="eyebrow" data-i18n="joinEyebrow">Recruitment</p>
+                <h2 data-i18n="joinTitle">Join the Team</h2>
+                <p class="join-subtitle" data-i18n="joinSubtitle">
+                    Ready to join AC Uranium? Fill out the form below and we will get in touch with you.
+                </p>
+            </header>
+
+            <div class="form-card">
+                <form class="join-form" id="joinForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="joinName" data-i18n="formNameLabel">Name</label>
+                            <input type="text" id="joinName" name="name" required placeholder="Name" data-i18n-attr="placeholder:formNamePlaceholder">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="joinContact" data-i18n="formContactLabel">Email or Telegram</label>
+                            <input type="text" id="joinContact" name="contact" required placeholder="Email or Telegram" data-i18n-attr="placeholder:formContactPlaceholder">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="joinCity" data-i18n="formCityLabel">City of Residence</label>
+                            <input type="text" id="joinCity" name="city" required placeholder="City of residence" data-i18n-attr="placeholder:formCityPlaceholder">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="joinRegion" data-i18n="formRegionLabel">Region / Oblast</label>
+                            <input type="text" id="joinRegion" name="region" required placeholder="Region / Oblast" data-i18n-attr="placeholder:formRegionPlaceholder">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="joinAge" data-i18n="formAgeLabel">Age</label>
+                            <input type="number" id="joinAge" name="age" min="14" max="99" required placeholder="Age" data-i18n-attr="placeholder:formAgePlaceholder">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label data-i18n="formGunLabel">Do you own an airsoft gun?</label>
+                            <div class="radio-options">
+                                <label class="radio-card">
+                                    <input type="radio" name="ownsGun" value="yes" required>
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-label" data-i18n="formGunYes">Yes, I have my own gear</span>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="ownsGun" value="no" required>
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-label" data-i18n="formGunNo">No</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="joinNotes" data-i18n="formNotesLabel">Airsoft experience / Additional info (optional)</label>
+                            <textarea id="joinNotes" name="notes" rows="3" placeholder="Tell us about your previous games or gear, if any..." data-i18n-attr="placeholder:formNotesPlaceholder"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn" data-i18n="formSubmitBtn">Submit Application</button>
+                    </div>
+
+                    <div class="form-alert success is-hidden" id="formSuccessAlert" role="alert">
+                        <div class="alert-icon">✓</div>
+                        <div class="alert-content">
+                            <h3 data-i18n="formSuccessTitle">Application Received!</h3>
+                            <p data-i18n="formSuccessMsg">Thank you for reaching out. We will review your info and get in touch shortly.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-github footer-empty">
+            <a href="https://github.com/sachaborodkin/ac_uranium_site" target="_blank" rel="noopener noreferrer" data-i18n-aria-label="footerGithub" aria-label="View on GitHub">
+                <img src="https://img.shields.io/badge/GitHub-View_on_GitHub-181717?style=for-the-badge&logo=github" alt="View on GitHub" data-i18n-badge="footerGithub">
+            </a>
+        </div>
+
+        <p class="footer-copy" data-i18n="footerCopy">&copy; 2026 AC Uranium. All rights reserved.</p>
+
+        <div class="footer-socials" aria-label="Social media links">
+            <span class="media-label" data-i18n="footerMedias">Our Medias</span>
+            <a href="https://www.instagram.com/ac_uranium_airsoft/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
+                <img src="images/icons/insta_icon.webp" alt="Instagram">
+            </a>
+            <a href="#" aria-label="Telegram" class="social-icon">
+                <img src="images/icons/telegram-white-icon.webp" alt="Telegram">
+            </a>
+            <a href="#" aria-label="YouTube" class="social-icon">
+                <img src="images/icons/youtube-app-white-icon.webp" alt="YouTube">
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./images/logo.png">
     <link rel="stylesheet" href="style.css">
-    <title>Gallery</title>
+    <title data-i18n="galleryPageTitle">Gallery — AC Uranium</title>
 </head>
 <body>
     <header class="main-header">
@@ -15,9 +16,9 @@
             </div>
 
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="#" data-i18n="navAbout">About Us</a>
-                <a href="gallery.html" class="active"data-i18n="navGallery">Gallery</a>
-                <a href="#" data-i18n="navJoin">Join Us</a>
+                <a href="index.html" data-i18n="navAbout">About Us</a>
+                <a href="gallery.html" class="active" data-i18n="navGallery">Gallery</a>
+                <a href="join.html" data-i18n="navJoin">Join Us</a>
             </nav>
 
             <div class="lang-dropdown">
@@ -49,50 +50,113 @@
         </div>
     </header>
 
-
     <main class="gallery">
-    <header class="gallery-header">
-        <p class="eyebrow" data-i18n="galleryEyebrow">Matchday Highlights</p>
-        <h2 data-i18n="galleryTitle">Recent game</h2>
-    </header>
+        <section class="gallery-section" data-gallery-section>
+            <div class="gallery-top">
+                <div class="gallery-header">
+                    <p class="eyebrow" data-i18n="galleryEyebrow">Matchday Highlights</p>
+                    <h2 data-i18n="galleryTitle">Recent games</h2>
+                </div>
 
-    <div class="gallery-grid">
-        <figure class="gallery-item featured">
-            <img src="./images/games/september/1.webp" alt="Gallery image 1" loading="lazy">
-        </figure>
-        <figure class="gallery-item">
-            <img src="./images/games/september/2.webp" alt="Gallery image 2" loading="lazy">
-        </figure>
-        <figure class="gallery-item">
-            <img src="./images/games/september/3.webp" alt="Gallery image 3" loading="lazy">
-        </figure>
-        <figure class="gallery-item">
-            <img src="./images/games/september/4.webp" alt="Gallery image 4" loading="lazy">
-        </figure>
-        <figure class="gallery-item">
-            <img src="./images/games/september/5.webp" alt="Gallery image 5" loading="lazy">
-        </figure>
-        <figure class="gallery-item">
-            <img src="./images/games/september/6.webp" alt="Gallery image 6" loading="lazy">
-        </figure>
-    </div>
-</main>
+                <div class="gallery-filters" role="tablist" aria-label="Filter games by month">
+                    <button type="button" class="filter-btn active" data-filter="all" data-i18n="filterAll">All</button>
+                    <button type="button" class="filter-btn" data-filter="september" data-i18n="filterSept">September</button>
+                </div>
+            </div>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
-    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous">&#10094;</button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="">
-    <button class="lightbox-nav next" id="lightboxNext" aria-label="Next">&#10095;</button>
-</div>
+            <div class="gallery-grid">
+                <figure class="gallery-item featured" data-category="september">
+                    <img src="./images/games/september/1.webp" alt="September game photo 1" loading="lazy">
+                    <figcaption class="gallery-badge" data-i18n="filterSept">September</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="september">
+                    <img src="./images/games/september/2.webp" alt="September game photo 2" loading="lazy">
+                    <figcaption class="gallery-badge" data-i18n="filterSept">September</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="september">
+                    <img src="./images/games/september/3.webp" alt="September game photo 3" loading="lazy">
+                    <figcaption class="gallery-badge" data-i18n="filterSept">September</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="september">
+                    <img src="./images/games/september/4.webp" alt="September game photo 4" loading="lazy">
+                    <figcaption class="gallery-badge" data-i18n="filterSept">September</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="september">
+                    <img src="./images/games/september/5.webp" alt="September game photo 5" loading="lazy">
+                    <figcaption class="gallery-badge" data-i18n="filterSept">September</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="september">
+                    <img src="./images/games/september/6.webp" alt="September game photo 6" loading="lazy">
+                    <figcaption class="gallery-badge" data-i18n="filterSept">September</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <hr class="gallery-divider">
+
+        <section class="gallery-section archive-section" data-gallery-section>
+            <div class="gallery-top">
+                <div class="gallery-header">
+                    <p class="eyebrow" data-i18n="archiveEyebrow">Early Days • 2019–2021</p>
+                    <h2 data-i18n="archiveTitle">Archive gallery</h2>
+                </div>
+            </div>
+
+            <div class="gallery-grid">
+                <figure class="gallery-item featured" data-category="archive">
+                    <img src="./images/games/archive2021-2019/1.webp" alt="Archive photo 1" loading="lazy">
+                    <figcaption class="gallery-badge">2019–2021</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="archive">
+                    <img src="./images/games/archive2021-2019/2.webp" alt="Archive photo 2" loading="lazy">
+                    <figcaption class="gallery-badge">2019–2021</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="archive">
+                    <img src="./images/games/archive2021-2019/3.webp" alt="Archive photo 3" loading="lazy">
+                    <figcaption class="gallery-badge">2019–2021</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="archive">
+                    <img src="./images/games/archive2021-2019/4.webp" alt="Archive photo 4" loading="lazy">
+                    <figcaption class="gallery-badge">2019–2021</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="archive">
+                    <img src="./images/games/archive2021-2019/5.webp" alt="Archive photo 5" loading="lazy">
+                    <figcaption class="gallery-badge">2019–2021</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="archive">
+                    <img src="./images/games/archive2021-2019/6.webp" alt="Archive photo 6" loading="lazy">
+                    <figcaption class="gallery-badge">2019–2021</figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="archive">
+                    <img src="./images/games/archive2021-2019/7.webp" alt="Archive photo 7" loading="lazy">
+                    <figcaption class="gallery-badge">2019–2021</figcaption>
+                </figure>
+            </div>
+        </section>
     </main>
-    <footer class="site-footer">
-        <div class="footer-empty"></div>
 
-        <p class="footer-copy">&copy; 2026 AC Uranium. All rights reserved.</p>
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+        <button type="button" class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous">&#10094;</button>
+        <div class="lightbox-stage">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+        <button type="button" class="lightbox-nav next" id="lightboxNext" aria-label="Next">&#10095;</button>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-github footer-empty">
+            <a href="https://github.com/sachaborodkin/ac_uranium_site" target="_blank" rel="noopener noreferrer" data-i18n-aria-label="footerGithub" aria-label="View on GitHub">
+                <img src="https://img.shields.io/badge/GitHub-View_on_GitHub-181717?style=for-the-badge&logo=github" alt="View on GitHub" data-i18n-badge="footerGithub">
+            </a>
+        </div>
+
+        <p class="footer-copy" data-i18n="footerCopy">&copy; 2026 AC Uranium. All rights reserved.</p>
 
         <div class="footer-socials" aria-label="Social media links">
-            <span class="media-label">Our Medias</span>
-            <a href="#" aria-label="Instagram" class="social-icon">
+            <span class="media-label" data-i18n="footerMedias">Our Medias</span>
+            <a href="https://www.instagram.com/ac_uranium_airsoft/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
                 <img src="images/icons/insta_icon.webp" alt="Instagram">
             </a>
             <a href="#" aria-label="Telegram" class="social-icon">
@@ -103,5 +167,7 @@
             </a>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
